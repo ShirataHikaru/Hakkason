@@ -1,105 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hu7-LW-Oeg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hu7-LW-Oeg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="y4h-Zc-xzv">
-            <objects>
-                <viewController id="eaP-Xv-JJC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="taf-Zz-lox"/>
-                        <viewControllerLayoutGuide type="bottom" id="VA3-aS-HGd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WYo-Ke-fo3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yf-7D-9tJ">
-                                <rect key="frame" x="136" y="266" width="105" height="30"/>
-                                <state key="normal" title="キーワード作成"/>
-                                <connections>
-                                    <segue destination="4dy-R3-8aQ" kind="show" id="ffg-if-4Jn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDl-oz-5UY">
-                                <rect key="frame" x="136" y="326" width="105" height="30"/>
-                                <state key="normal" title="キーワード入力"/>
-                                <connections>
-                                    <segue destination="3eg-qp-R6E" kind="show" id="PXz-fq-7Zg"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pDl-oz-5UY" firstAttribute="centerX" secondItem="WYo-Ke-fo3" secondAttribute="centerX" id="1Ou-rF-IAl"/>
-                            <constraint firstItem="2Yf-7D-9tJ" firstAttribute="centerX" secondItem="WYo-Ke-fo3" secondAttribute="centerX" id="gSY-ds-qeb"/>
-                            <constraint firstItem="2Yf-7D-9tJ" firstAttribute="top" secondItem="taf-Zz-lox" secondAttribute="bottom" constant="202" id="pug-9j-hIC"/>
-                            <constraint firstItem="pDl-oz-5UY" firstAttribute="top" secondItem="2Yf-7D-9tJ" secondAttribute="bottom" constant="30" id="wGb-Li-ESZ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="K8x-w2-RKI"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jUV-wx-8sP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="727.5" y="370.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="V5P-Nj-Rdi">
-            <objects>
-                <viewController id="3eg-qp-R6E" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="m8I-g5-5gP"/>
-                        <viewControllerLayoutGuide type="bottom" id="IsT-la-efx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SUk-lK-Bsh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="KeyWordを入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZXx-GR-iKM">
-                                <rect key="frame" x="85" y="319" width="205" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhh-zw-aXf">
-                                <rect key="frame" x="172" y="379" width="30" height="30"/>
-                                <state key="normal" title="決定"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q79-VK-U30">
-                                <rect key="frame" x="172" y="439" width="30" height="30"/>
-                                <state key="normal" title="確定"/>
-                                <connections>
-                                    <segue destination="8mM-Qp-ZDn" kind="show" id="kFc-C0-3A5"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ここに相手先の情報を入れる" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wyr-bo-Nvu">
-                                <rect key="frame" x="86" y="214" width="203" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Q79-VK-U30" firstAttribute="top" secondItem="Bhh-zw-aXf" secondAttribute="bottom" constant="30" id="0LX-TL-dyJ"/>
-                            <constraint firstItem="ZXx-GR-iKM" firstAttribute="centerY" secondItem="SUk-lK-Bsh" secondAttribute="centerY" id="7Gn-Zr-nO9"/>
-                            <constraint firstItem="Q79-VK-U30" firstAttribute="centerX" secondItem="SUk-lK-Bsh" secondAttribute="centerX" id="Uo7-9C-EKH"/>
-                            <constraint firstItem="Bhh-zw-aXf" firstAttribute="top" secondItem="ZXx-GR-iKM" secondAttribute="bottom" constant="30" id="gFg-Ta-JbQ"/>
-                            <constraint firstItem="Bhh-zw-aXf" firstAttribute="centerX" secondItem="SUk-lK-Bsh" secondAttribute="centerX" id="hFV-0x-tDY"/>
-                            <constraint firstItem="ZXx-GR-iKM" firstAttribute="centerX" secondItem="SUk-lK-Bsh" secondAttribute="centerX" id="muP-Zo-OaM"/>
-                            <constraint firstItem="Wyr-bo-Nvu" firstAttribute="centerX" secondItem="SUk-lK-Bsh" secondAttribute="centerX" id="o7L-1t-l2h"/>
-                            <constraint firstItem="Wyr-bo-Nvu" firstAttribute="top" secondItem="m8I-g5-5gP" secondAttribute="bottom" constant="150" id="qHb-o5-Jft"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DeR-lQ-OMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="727.5" y="1144.5"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="Q5P-w6-pjj">
             <objects>
@@ -146,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0D3-R0-W7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301.5" y="1169.5"/>
+            <point key="canvasLocation" x="1313.5" y="1257.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BXI-K7-GK6">
@@ -158,63 +64,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="eaP-Xv-JJC" kind="relationship" relationship="rootViewController" id="hmM-R9-fdg"/>
+                        <segue destination="P2l-uq-pPk" kind="relationship" relationship="rootViewController" id="M7W-tq-5hx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOp-8C-1SH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210.5" y="369.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="2Yf-qE-Vbv">
-            <objects>
-                <viewController id="4dy-R3-8aQ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Qw-sf-z93"/>
-                        <viewControllerLayoutGuide type="bottom" id="H0R-6w-fjo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LzU-1u-gg6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword(乱数)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAX-mR-GeX">
-                                <rect key="frame" x="132" y="323" width="112" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相手にパスワードを教えてください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSN-eW-ZdI">
-                                <rect key="frame" x="76" y="374" width="224" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7V-dm-hNP">
-                                <rect key="frame" x="223" y="594" width="135" height="30"/>
-                                <state key="normal" title="とりあえず画面遷移"/>
-                                <connections>
-                                    <segue destination="P2l-uq-pPk" kind="show" id="Hg1-5n-KjA"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="VSN-eW-ZdI" firstAttribute="top" secondItem="sAX-mR-GeX" secondAttribute="bottom" constant="30" id="Dis-Jq-JZw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="T7V-dm-hNP" secondAttribute="trailing" constant="1" id="Gww-lw-cMB"/>
-                            <constraint firstItem="sAX-mR-GeX" firstAttribute="centerX" secondItem="LzU-1u-gg6" secondAttribute="centerX" id="Nf7-mG-fcq"/>
-                            <constraint firstItem="VSN-eW-ZdI" firstAttribute="centerX" secondItem="LzU-1u-gg6" secondAttribute="centerX" id="lsR-ax-p2V"/>
-                            <constraint firstItem="sAX-mR-GeX" firstAttribute="centerY" secondItem="LzU-1u-gg6" secondAttribute="centerY" id="p2k-Mj-hPN"/>
-                            <constraint firstItem="H0R-6w-fjo" firstAttribute="top" secondItem="T7V-dm-hNP" secondAttribute="bottom" constant="43" id="yI5-K5-ebc"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <segue destination="P2l-uq-pPk" kind="show" id="wkx-eZ-2eZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XWI-ff-pOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1301.5" y="370.5"/>
+            <point key="canvasLocation" x="1270.5" y="335.5"/>
         </scene>
         <!--Drawing View Controller-->
         <scene sceneID="qZZ-6G-xj4">
@@ -252,6 +107,7 @@
                                     <barButtonItem title="送信" id="frR-Wf-cul">
                                         <connections>
                                             <action selector="send:" destination="P2l-uq-pPk" id="626-6m-ouf"/>
+                                            <segue destination="8mM-Qp-ZDn" kind="show" id="bzY-S5-wfd"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -279,6 +135,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="3Jz-tZ-3PK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="drawingView" destination="9IK-b9-Kq7" id="xPL-Jj-08B"/>
@@ -380,16 +237,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1q-gK-CKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834.5" y="1096.5"/>
+            <point key="canvasLocation" x="1834.5" y="1257.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Color Dropper-50" width="25" height="25"/>
         <image name="Line Width-50" width="25" height="25"/>
-        <image name="Sent Filled-50" width="25" height="25"/>
         <image name="undo" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wkx-eZ-2eZ"/>
+        <segue reference="mCt-44-PR4"/>
     </inferredMetricsTieBreakers>
 </document>
