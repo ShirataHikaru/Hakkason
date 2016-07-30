@@ -11,6 +11,8 @@ import ACEDrawingView
 
 class DrawingViewController: UIViewController {
     
+    let ad = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     //描画画面をアウトレット接続してあります。
     @IBOutlet weak var drawingView: ACEDrawingView!
     
@@ -20,8 +22,6 @@ class DrawingViewController: UIViewController {
         
         //線の太さの変更はこのように行います。
         drawingView.lineWidth = 2.0
-        
-        
 
         // Do any additional setup after loading the view.
     }
@@ -30,6 +30,14 @@ class DrawingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        drawingView.lineColor = ad.pickedColor
+    }
+    
+    
+    
+    
     
 
     /*
