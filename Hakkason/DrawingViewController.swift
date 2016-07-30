@@ -14,6 +14,10 @@ class DrawingViewController: UIViewController {
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
     var SaveButton: UIBarButtonItem!
     
+    // Sliderを作成
+    let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
+    var SliderDisplay: Bool = false
+    
     //描画画面をアウトレット接続してあります。
     @IBOutlet weak var drawingView: ACEDrawingView!
     
@@ -29,31 +33,46 @@ class DrawingViewController: UIViewController {
         
         //線の太さの変更はこのように行います。
         drawingView.lineWidth = 2.0
-
+        
+        WidthSlider.layer.position = CGPointMake(self.view.frame.midX, 500)
+        WidthSlider.backgroundColor = UIColor.whiteColor()
+        WidthSlider.layer.cornerRadius = 10.0
+        WidthSlider.layer.shadowOpacity = 0.5
+        WidthSlider.layer.masksToBounds = false
+        
+        // 最小値と最大値を設定
+        WidthSlider.minimumValue = 1.0
+        WidthSlider.maximumValue = 10.0
+        
+        WidthSlider.addTarget(self, action: "onChangeWidthValueSlider:", forControlEvents: UIControlEvents.ValueChanged)
+        
         // Do any additional setup after loading the view.
     }
     
     internal func onClickSaveButton(sender: UIButton){
-       
-        //
-        let Image: UIImage = self.drawingView.image
         
-        //アルバムに追加
-        UIImageWriteToSavedPhotosAlbum(Image, self, nil, nil)
+        // 描いた画面をUIImageで取得
+        let Image: UIImage? = self.drawingView.image
+        
+        if Image != nil {
+        // アルバムに追加
+        UIImageWriteToSavedPhotosAlbum(Image!, self, nil, nil)
         
         let alert: UIAlertController = UIAlertController(title: "保存が完了しました！", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
+            // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
             print("OK")
         })
-
+        
+        alert.addAction(defaultAction)
+        
+        // ④ Alertを表示
+        presentViewController(alert, animated: true, completion: nil)
+        }else{
             
-            alert.addAction(defaultAction)
-            
-            // ④ Alertを表示
-            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func DrawUndo(sender: UIBarButtonItem) {
@@ -62,26 +81,16 @@ class DrawingViewController: UIViewController {
     }
     
     @IBAction func DrawWidth(sender: UIBarButtonItem) {
-        // Sliderを作成する.
-        let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
-        WidthSlider.layer.position = CGPointMake(self.view.frame.midX, 500)
-        WidthSlider.backgroundColor = UIColor.whiteColor()
-        WidthSlider.layer.cornerRadius = 10.0
-        WidthSlider.layer.shadowOpacity = 0.5
-        WidthSlider.layer.masksToBounds = false
-        
-        // 最小値と最大値を設定する.
-        WidthSlider.minimumValue = 1.0
-        WidthSlider.maximumValue = 10.0
-        
-        WidthSlider.addTarget(self, action: "onChangeWidthValueSlider:", forControlEvents: UIControlEvents.ValueChanged)
-        
-        self.view.addSubview(WidthSlider)
+        if SliderDisplay == false{
+            self.view.addSubview(self.WidthSlider)
+            SliderDisplay = true
+        }else if SliderDisplay == true{
+            WidthSlider.removeFromSuperview()
+            SliderDisplay = false
+        }
     }
     
-    /*
-     Sliderの値が変わった時に呼ばれるメソッド
-     */
+    //Sliderの値が変わった時に呼ばれるメソッド
     internal func onChangeWidthValueSlider(sender : UISlider){
         drawingView.lineWidth = CGFloat(sender.value)
     }
