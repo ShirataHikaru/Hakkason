@@ -16,10 +16,10 @@ class PickerColorViewController: UIViewController, UICollectionViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,7 +62,7 @@ class PickerColorViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.pickedColorView.backgroundColor = colorWithHexString("eac7cd")
         }
         
-       return cell
+        return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -103,7 +103,7 @@ class PickerColorViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBAction func cancelPushed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     
     func colorWithHexString (hex:String) -> UIColor {
         
@@ -133,17 +133,17 @@ class PickerColorViewController: UIViewController, UICollectionViewDelegate, UIC
     
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 

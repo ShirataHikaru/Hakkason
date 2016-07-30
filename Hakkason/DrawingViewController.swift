@@ -9,12 +9,14 @@
 import UIKit
 import ACEDrawingView
 import MultipeerConnectivity
+import SCLAlertView
 
-class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MCBrowserViewControllerDelegate,MCSessionDelegate {
+
+class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MCBrowserViewControllerDelegate,MCSessionDelegate, ModalViewControllerDelegate {
 
     
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
-
+    let modalView = WaitmessageViewController()
     var SaveButton: UIBarButtonItem!
     
     // Sliderを作成
@@ -27,6 +29,30 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     var session : MCSession!
     var peerID: MCPeerID!
 
+    @IBAction func alldeletepush(sender: AnyObject) {
+         let alert = SCLAlertView()
+        alert.addButton("Yes"){
+             self.drawingView.clear()
+        }
+                        alert.addButton("no") {
+            print("Second button tapped")
+        }
+        alert.showSuccess("全部削除してもよろしいですか?", subTitle: "")
+        //let alert:UIAlertController = UIAlertController(title: "全部削除しますがよろしいですか？",message: "",preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",style: UIAlertActionStyle.Cancel,
+                                                       handler: {
+                                                        (action:UIAlertAction!) -> Void in
+                                                        print("Cancel")
+        })
+      /*  let defaultAction:UIAlertAction = UIAlertAction(title:"OK",style: UIAlertActionStyle.Default,handler: {
+            (action:UIAlertAction!) -> Void in
+            self.drawingView.clear()
+        })
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)*/
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
     //描画画面をアウトレット接続してあります。
     @IBOutlet weak var drawingView: ACEDrawingView!
     var SerchButton: UIBarButtonItem!
@@ -35,6 +61,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         SerchButton = UIBarButtonItem(title:"検索",style: .Plain,target:self,action: "OnClickSerchButton:")
         self.navigationItem.leftBarButtonItem = SerchButton
+        
         
         self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
         self.session = MCSession(peer: peerID)
@@ -54,6 +81,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
 
         //Saveボタンの作成
+        
         SaveButton = UIBarButtonItem(title: "保存", style: .Plain, target: self, action: "onClickSaveButton:")
         
         // ナビゲーションバーの右に設置
@@ -75,8 +103,19 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         WidthSlider.addTarget(self, action: "onChangeWidthValueSlider:", forControlEvents: UIControlEvents.ValueChanged)
         
+        self.modalView.delegate = self
+
+        
         // Do any additional setup after loading the view.
     }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        
+//        
+////        let vc = WaitmessageViewController()
+////        vc.dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     internal func onClickSaveButton(sender: UIButton){
         
@@ -123,14 +162,24 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     internal func onChangeWidthValueSlider(sender : UISlider){
         drawingView.lineWidth = CGFloat(sender.value)
     }
+    
     @IBAction func send(sender: UIBarButtonItem) {
         let sendimg =  self.drawingView.image
         let transimg = UIImagePNGRepresentation(sendimg!)
+//             let nextVc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as!
         var error : NSError?
         do {
             try self.session.sendData(transimg!,
                                       toPeers: self.session.connectedPeers,
                                       withMode: MCSessionSendDataMode.Unreliable)
+            let alert = SCLAlertView()
+            alert.showWait("受信待機中", subTitle: "")            //let alert:UIAlertController =  UIAlertController(title: "受診待機中",message: "",preferredStyle: UIAlertControllerStyle.Alert)
+            presentViewController(alert, animated: true, completion: nil)
+           
+       
+//            self.presentViewController(nextVc, animated: true, completion: nil)
+            
+            //performSegueWithIdentifier("waitSegue", sender: self)
         } catch {
             // do something.
         }
@@ -142,10 +191,16 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     }
     func updateimg(recimg:NSData){
+    print("でーたをうけとりました。")
+        self.dismissViewControllerAnimated(true, completion: nil)
         let chatchimage : UIImage! = UIImage(data:recimg)
         let imgView = UIImageView(image:chatchimage)
         self.drawingView.drawMode = ACEDrawingMode.Scale
         self.drawingView.loadImage(chatchimage)
+//        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+       // ad.modalVC = WaitmessageViewController()
+        //ad.modalVC.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     internal func OnClickSerchButton(sender:UIButton){
          self.presentViewController(self.browser, animated: true, completion: nil)
@@ -169,14 +224,23 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     func session(session: MCSession!, didReceiveData data: NSData!,
                  fromPeer peerID: MCPeerID!)  {
         // Called when a peer sends an NSData to us
+
         
         // This needs to run on the main queue
+        
+
         dispatch_async(dispatch_get_main_queue()) {
-            
-            
-            
             self.updateimg(data!)
+           
+            
+
+            //self.modalDidfinished()
+            //self.modalView.dismissViewControllerAnimated(true, completion: nil)
         }
+        
+        
+//        self.modalView.dismissViewContorollerAnimated(true, completion: nil)
+
     }
 
     
@@ -185,6 +249,8 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     func session(session: MCSession!,
                  didStartReceivingResourceWithName resourceName: String!,
                                                    fromPeer peerID: MCPeerID!, withProgress progress: NSProgress!)  {
+        navigationController?.navigationBar.topItem?.title = peerID.displayName
+        
         
         // Called when a peer starts sending a file to us
     }
@@ -194,16 +260,25 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
                                                     fromPeer peerID: MCPeerID!,
                                                              atURL localURL: NSURL!, withError error: NSError!)  {
         // Called when a file has finished transferring from another peer
+        navigationController?.navigationBar.topItem?.title = peerID.displayName
+        
+
     }
     
     func session(session: MCSession!, didReceiveStream stream: NSInputStream!,
                  withName streamName: String!, fromPeer peerID: MCPeerID!)  {
         // Called when a peer establishes a stream with us
+        navigationController?.navigationBar.topItem?.title = peerID.displayName
+        
+
     }
     
     func session(session: MCSession!, peer peerID: MCPeerID!,
                  didChangeState state: MCSessionState)  {
         // Called when a connected peer changes state (for example, goes offline)
+        navigationController?.navigationBar.topItem?.title = peerID.displayName
+        
+
         
     }
     
@@ -225,6 +300,9 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
             ipc.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             self.presentViewController(ipc, animated: true, completion: nil)
         }
+    }
+    func modalDidfinished() {
+        self.modalView.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
