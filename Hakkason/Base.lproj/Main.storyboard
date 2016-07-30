@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hu7-LW-Oeg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hu7-LW-Oeg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,7 +21,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OQm-1x-HXj">
                                 <rect key="frame" x="177" y="324" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相手が手紙を書いています" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTk-dB-cLc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="相手が手紙を書いています" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTk-dB-cLc">
                                 <rect key="frame" x="79" y="189" width="216" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,6 +92,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3X8-Mu-xac"/>
+                                    <barButtonItem title="Dust" id="0nS-NA-7LV">
+                                        <connections>
+                                            <action selector="alldeletepush:" destination="P2l-uq-pPk" id="kXw-gu-jG5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0UJ-hb-NQo"/>
                                     <barButtonItem image="Color Dropper-50" id="ICt-XR-kib">
                                         <connections>
                                             <segue destination="dTb-7G-ztJ" kind="presentation" id="nCy-DW-BvI"/>
@@ -107,12 +113,11 @@
                                     <barButtonItem title="送信" id="frR-Wf-cul">
                                         <connections>
                                             <action selector="send:" destination="P2l-uq-pPk" id="626-6m-ouf"/>
-                                            <segue destination="8mM-Qp-ZDn" kind="show" id="bzY-S5-wfd"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-b9-Kq7" customClass="ACEDrawingView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-b9-Kq7" customClass="ACEDrawingView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -139,11 +144,31 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="drawingView" destination="9IK-b9-Kq7" id="xPL-Jj-08B"/>
+                        <segue destination="tXP-9O-vYg" kind="presentation" identifier="waitSegue" id="lQJ-hv-Jxt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeZ-CK-yYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834.5" y="370.5"/>
+            <point key="canvasLocation" x="1846.5" y="657.5"/>
+        </scene>
+        <!--Waitmessage View Controller-->
+        <scene sceneID="SpU-Nq-EAy">
+            <objects>
+                <viewController id="tXP-9O-vYg" customClass="WaitmessageViewController" customModule="Hakkason" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QaV-8I-xNe"/>
+                        <viewControllerLayoutGuide type="bottom" id="llf-Rf-yUc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pih-1h-orJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SBY-kd-i6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2285.5" y="641.5"/>
         </scene>
         <!--Picker Color View Controller-->
         <scene sceneID="oMl-L9-K4n">
@@ -237,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1q-gK-CKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834.5" y="1257.5"/>
+            <point key="canvasLocation" x="1868.5" y="1491.5"/>
         </scene>
     </scenes>
     <resources>
@@ -246,6 +271,6 @@
         <image name="undo" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mCt-44-PR4"/>
+        <segue reference="C8C-OY-ztQ"/>
     </inferredMetricsTieBreakers>
 </document>

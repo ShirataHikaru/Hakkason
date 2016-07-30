@@ -5,5 +5,6 @@ use_frameworks!
 
 target 'Hakkason' do
 	pod 'ACEDrawingView'
+	pod 'SCLAlertView'
 end
 
