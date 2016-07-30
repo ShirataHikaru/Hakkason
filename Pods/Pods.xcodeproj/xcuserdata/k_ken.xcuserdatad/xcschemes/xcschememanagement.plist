@@ -4,19 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Hakkason.xcscheme</key>
+		<key>ACEDrawingView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>0</integer>
-=======
-			<integer>2</integer>
->>>>>>> kenta-UndoWidth
+		</dict>
+		<key>Pods-Hakkason.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7C1B2F311D4BABA700663070</key>
+		<key>7500E2D550B9C88CCA826505B6217095</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F23EF643357DE4902A2E6096F77BF758</key>
 		<dict>
 			<key>primary</key>
 			<true/>
