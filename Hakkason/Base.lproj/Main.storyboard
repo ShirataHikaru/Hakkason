@@ -121,20 +121,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifb-yQ-hf8">
+                                <rect key="frame" x="212" y="598" width="135" height="30"/>
+                                <state key="normal" title="とりあえず画面遷移"/>
+                                <connections>
+                                    <segue destination="P2l-uq-pPk" kind="show" id="mCt-44-PR4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kTk-dB-cLc" firstAttribute="centerX" secondItem="QLE-qq-or3" secondAttribute="centerX" id="69s-zH-QIz"/>
                             <constraint firstItem="OQm-1x-HXj" firstAttribute="centerX" secondItem="QLE-qq-or3" secondAttribute="centerX" id="8bs-fa-Y7l"/>
+                            <constraint firstItem="O7Q-Kj-JS5" firstAttribute="top" secondItem="ifb-yQ-hf8" secondAttribute="bottom" constant="39" id="QYr-32-GCc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ifb-yQ-hf8" secondAttribute="trailing" constant="12" id="cgn-qe-45U"/>
                             <constraint firstItem="OQm-1x-HXj" firstAttribute="centerY" secondItem="QLE-qq-or3" secondAttribute="centerY" id="gmq-4z-165"/>
                             <constraint firstItem="kTk-dB-cLc" firstAttribute="top" secondItem="ghf-3L-Gy8" secondAttribute="bottom" constant="125" id="n3B-3j-eVO"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="P2l-uq-pPk" kind="show" id="C8C-OY-ztQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0D3-R0-W7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301.5" y="1144.5"/>
+            <point key="canvasLocation" x="1301.5" y="1169.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BXI-K7-GK6">
@@ -223,17 +235,25 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-hc-H0U">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="undo" id="BjE-2T-imr"/>
+                                    <barButtonItem image="undo" id="BjE-2T-imr">
+                                        <connections>
+                                            <action selector="DrawUndo:" destination="P2l-uq-pPk" id="QlJ-TE-0h5"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3X8-Mu-xac"/>
-                                    <barButtonItem title="色" id="ICt-XR-kib">
+                                    <barButtonItem image="Color Dropper-50" id="ICt-XR-kib">
                                         <connections>
                                             <segue destination="dTb-7G-ztJ" kind="presentation" id="nCy-DW-BvI"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="eEq-Yf-VbA"/>
-                                    <barButtonItem title="太さ" id="574-QN-GWZ"/>
+                                    <barButtonItem image="Line Width-50" id="574-QN-GWZ">
+                                        <connections>
+                                            <action selector="DrawWidth:" destination="P2l-uq-pPk" id="8Co-br-gOk"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="yEF-by-n72"/>
-                                    <barButtonItem title="送信" id="frR-Wf-cul"/>
+                                    <barButtonItem image="Sent Filled-50" id="frR-Wf-cul"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -359,7 +379,13 @@
             <point key="canvasLocation" x="1834.5" y="1096.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Color Dropper-50" width="25" height="25"/>
+        <image name="Line Width-50" width="25" height="25"/>
+        <image name="Sent Filled-50" width="25" height="25"/>
+        <image name="undo" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wkx-eZ-2eZ"/>
+        <segue reference="mCt-44-PR4"/>
     </inferredMetricsTieBreakers>
 </document>
