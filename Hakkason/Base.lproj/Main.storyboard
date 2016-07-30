@@ -223,7 +223,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-hc-H0U">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="undo" id="BjE-2T-imr"/>
+                                    <barButtonItem image="undo" id="BjE-2T-imr"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3X8-Mu-xac"/>
                                     <barButtonItem title="色" id="ICt-XR-kib">
                                         <connections>
@@ -356,9 +356,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1q-gK-CKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834.5" y="1096.5"/>
+            <point key="canvasLocation" x="1834.5" y="1144.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="undo" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wkx-eZ-2eZ"/>
     </inferredMetricsTieBreakers>
