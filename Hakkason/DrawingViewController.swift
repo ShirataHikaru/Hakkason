@@ -19,13 +19,43 @@ class DrawingViewController: UIViewController {
         super.viewDidLoad()
         
         //線の太さの変更はこのように行います。
-        drawingView.lineWidth = 2.0
+        drawingView.lineWidth = 1.0
         
         
 
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func DrawUndo(sender: UIBarButtonItem) {
+        self.drawingView.canUndo()
+        self.drawingView.undoLatestStep()
+    }
+    
+    @IBAction func DrawWidth(sender: UIBarButtonItem) {
+        // Sliderを作成する.
+        let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
+        WidthSlider.layer.position = CGPointMake(self.view.frame.midX, 500)
+        WidthSlider.backgroundColor = UIColor.whiteColor()
+        WidthSlider.layer.cornerRadius = 10.0
+        WidthSlider.layer.shadowOpacity = 0.5
+        WidthSlider.layer.masksToBounds = false
+        
+        // 最小値と最大値を設定する.
+        WidthSlider.minimumValue = 1.0
+        WidthSlider.maximumValue = 10.0
+        
+        WidthSlider.addTarget(self, action: "onChangeWidthValueSlider:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.view.addSubview(WidthSlider)
+    }
+    
+    /*
+     Sliderの値が変わった時に呼ばれるメソッド
+     */
+    internal func onChangeWidthValueSlider(sender : UISlider){
+        drawingView.lineWidth = CGFloat(sender.value)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
