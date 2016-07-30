@@ -10,13 +10,17 @@ import UIKit
 import ACEDrawingView
 import MultipeerConnectivity
 
+class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MCBrowserViewControllerDelegate,MCSessionDelegate {
 
-class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
 
     var SaveButton: UIBarButtonItem!
     
+    // Sliderを作成
+    let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
+    var SliderDisplay: Bool = false
+
     let serviceType = "LCOC-Chat"
     var browser : MCBrowserViewController!
     var assistant : MCAdvertiserAssistant!
@@ -38,6 +42,11 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.browser = MCBrowserViewController(serviceType:serviceType,
                                                session:self.session)
 //        self.browser.delegate = self;
+        self.session.delegate = self
+        self.browser = MCBrowserViewController(serviceType:serviceType,
+                                               session:self.session)
+        self.browser.delegate = self;
+
         self.assistant = MCAdvertiserAssistant(serviceType:serviceType,
                                                discoveryInfo:nil, session:self.session)
         self.assistant.start()
@@ -54,36 +63,45 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         //線の太さの変更はこのように行います。
         drawingView.lineWidth = 2.0
         
-//        let image = UIImage(named: "ScreenShot")
-//        drawingView.drawMode = ACEDrawingMode.OriginalSize
-//
-//        drawingView.loadImage(image)
+        WidthSlider.layer.position = CGPointMake(self.view.frame.midX, 500)
+        WidthSlider.backgroundColor = UIColor.whiteColor()
+        WidthSlider.layer.cornerRadius = 10.0
+        WidthSlider.layer.shadowOpacity = 0.5
+        WidthSlider.layer.masksToBounds = false
         
-
+        // 最小値と最大値を設定
+        WidthSlider.minimumValue = 1.0
+        WidthSlider.maximumValue = 10.0
+        
+        WidthSlider.addTarget(self, action: "onChangeWidthValueSlider:", forControlEvents: UIControlEvents.ValueChanged)
+        
         // Do any additional setup after loading the view.
     }
     
     internal func onClickSaveButton(sender: UIButton){
-       
-        //
-        let Image: UIImage = self.drawingView.image
         
-        //アルバムに追加
-        UIImageWriteToSavedPhotosAlbum(Image, self, nil, nil)
+        // 描いた画面をUIImageで取得
+        let Image: UIImage? = self.drawingView.image
+        
+        if Image != nil {
+        // アルバムに追加
+        UIImageWriteToSavedPhotosAlbum(Image!, self, nil, nil)
         
         let alert: UIAlertController = UIAlertController(title: "保存が完了しました！", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
+            // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
             print("OK")
         })
-
+        
+        alert.addAction(defaultAction)
+        
+        // ④ Alertを表示
+        presentViewController(alert, animated: true, completion: nil)
+        }else{
             
-            alert.addAction(defaultAction)
-            
-            // ④ Alertを表示
-            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func DrawUndo(sender: UIBarButtonItem) {
@@ -92,26 +110,16 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func DrawWidth(sender: UIBarButtonItem) {
-        // Sliderを作成する.
-        let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
-        WidthSlider.layer.position = CGPointMake(self.view.frame.midX, 500)
-        WidthSlider.backgroundColor = UIColor.whiteColor()
-        WidthSlider.layer.cornerRadius = 10.0
-        WidthSlider.layer.shadowOpacity = 0.5
-        WidthSlider.layer.masksToBounds = false
-        
-        // 最小値と最大値を設定する.
-        WidthSlider.minimumValue = 1.0
-        WidthSlider.maximumValue = 10.0
-        
-        WidthSlider.addTarget(self, action: "onChangeWidthValueSlider:", forControlEvents: UIControlEvents.ValueChanged)
-        
-        self.view.addSubview(WidthSlider)
+        if SliderDisplay == false{
+            self.view.addSubview(self.WidthSlider)
+            SliderDisplay = true
+        }else if SliderDisplay == true{
+            WidthSlider.removeFromSuperview()
+            SliderDisplay = false
+        }
     }
     
-    /*
-     Sliderの値が変わった時に呼ばれるメソッド
-     */
+    //Sliderの値が変わった時に呼ばれるメソッド
     internal func onChangeWidthValueSlider(sender : UISlider){
         drawingView.lineWidth = CGFloat(sender.value)
     }
@@ -170,6 +178,97 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.updateimg(data!)
         }
     }
+    @IBAction func send(sender: UIBarButtonItem) {
+        let sendimg =  self.drawingView.image
+        let transimg = UIImagePNGRepresentation(sendimg!)
+        var error : NSError?
+        do {
+            try self.session.sendData(transimg!,
+                                      toPeers: self.session.connectedPeers,
+                                      withMode: MCSessionSendDataMode.Unreliable)
+        } catch {
+            // do something.
+        }
+        
+        if error != nil {
+            print("Error sending data: \(error?.localizedDescription)")
+        }
+
+
+    }
+    func updateimg(recimg:NSData){
+        let chatchimage : UIImage! = UIImage(data:recimg)
+        let imgView = UIImageView(image:chatchimage)
+        self.drawingView.drawMode = ACEDrawingMode.Scale
+        self.drawingView.loadImage(chatchimage)
+    }
+    internal func OnClickSerchButton(sender:UIButton){
+         self.presentViewController(self.browser, animated: true, completion: nil)
+    }
+   
+    func browserViewControllerDidFinish(
+        browserViewController: MCBrowserViewController!)  {
+        // Called when the browser view controller is dismissed (ie the Done
+        // button was tapped)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(
+        browserViewController: MCBrowserViewController!)  {
+        // Called when the browser view controller is cancelled
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func session(session: MCSession!, didReceiveData data: NSData!,
+                 fromPeer peerID: MCPeerID!)  {
+        // Called when a peer sends an NSData to us
+        
+        // This needs to run on the main queue
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            
+            
+            self.updateimg(data!)
+        }
+    }
+    
+    // The following methods do nothing, but the MCSessionDelegate protocol
+    // requires that we implement them.
+    func session(session: MCSession!,
+                 didStartReceivingResourceWithName resourceName: String!,
+                                                   fromPeer peerID: MCPeerID!, withProgress progress: NSProgress!)  {
+        
+        // Called when a peer starts sending a file to us
+    }
+    
+    func session(session: MCSession!,
+                 didFinishReceivingResourceWithName resourceName: String!,
+                                                    fromPeer peerID: MCPeerID!,
+                                                             atURL localURL: NSURL!, withError error: NSError!)  {
+        // Called when a file has finished transferring from another peer
+    }
+    
+    func session(session: MCSession!, didReceiveStream stream: NSInputStream!,
+                 withName streamName: String!, fromPeer peerID: MCPeerID!)  {
+        // Called when a peer establishes a stream with us
+    }
+    
+    func session(session: MCSession!, peer peerID: MCPeerID!,
+                 didChangeState state: MCSessionState)  {
+        // Called when a connected peer changes state (for example, goes offline)
+        
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
     
     // The following methods do nothing, but the MCSessionDelegate protocol
     // requires that we implement them.
