@@ -15,13 +15,18 @@ class DrawingViewController: UIViewController {
     
     //描画画面をアウトレット接続してあります。
     @IBOutlet weak var drawingView: ACEDrawingView!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //線の太さの変更はこのように行います。
         drawingView.lineWidth = 2.0
+        
+        let image = UIImage(named: "ScreenShot")
+        drawingView.drawMode = ACEDrawingMode.OriginalSize
+
+        drawingView.loadImage(image)
+        
 
         // Do any additional setup after loading the view.
     }
