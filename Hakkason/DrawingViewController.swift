@@ -34,10 +34,10 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
         self.session = MCSession(peer: peerID)
-        self.session.delegate = self
+//        self.session.delegate = self
         self.browser = MCBrowserViewController(serviceType:serviceType,
                                                session:self.session)
-        self.browser.delegate = self;
+//        self.browser.delegate = self;
         self.assistant = MCAdvertiserAssistant(serviceType:serviceType,
                                                discoveryInfo:nil, session:self.session)
         self.assistant.start()
