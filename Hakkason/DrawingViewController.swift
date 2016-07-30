@@ -21,8 +21,7 @@ class DrawingViewController: UIViewController {
         super.viewDidLoad()
         
         //線の太さの変更はこのように行います。
-        drawingView.lineWidth = 1.0
-
+        drawingView.lineWidth = 2.0
 
         // Do any additional setup after loading the view.
     }
