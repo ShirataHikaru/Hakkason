@@ -44,7 +44,7 @@ class DrawingViewController: UIViewController {
         let alert: UIAlertController = UIAlertController(title: "保存が完了しました！", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
+            // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
             print("OK")
         })
@@ -62,7 +62,7 @@ class DrawingViewController: UIViewController {
     }
     
     @IBAction func DrawWidth(sender: UIBarButtonItem) {
-        // Sliderを作成する.
+        // Sliderを作成
         let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
         WidthSlider.layer.position = CGPointMake(self.view.frame.midX, 500)
         WidthSlider.backgroundColor = UIColor.whiteColor()
@@ -70,7 +70,7 @@ class DrawingViewController: UIViewController {
         WidthSlider.layer.shadowOpacity = 0.5
         WidthSlider.layer.masksToBounds = false
         
-        // 最小値と最大値を設定する.
+        // 最小値と最大値を設定
         WidthSlider.minimumValue = 1.0
         WidthSlider.maximumValue = 10.0
         
@@ -79,9 +79,7 @@ class DrawingViewController: UIViewController {
         self.view.addSubview(WidthSlider)
     }
     
-    /*
-     Sliderの値が変わった時に呼ばれるメソッド
-     */
+    //Sliderの値が変わった時に呼ばれるメソッド
     internal func onChangeWidthValueSlider(sender : UISlider){
         drawingView.lineWidth = CGFloat(sender.value)
     }
