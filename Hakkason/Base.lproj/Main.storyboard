@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -176,13 +177,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7V-dm-hNP">
+                                <rect key="frame" x="223" y="594" width="135" height="30"/>
+                                <state key="normal" title="とりあえず画面遷移"/>
+                                <connections>
+                                    <segue destination="P2l-uq-pPk" kind="show" id="Hg1-5n-KjA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VSN-eW-ZdI" firstAttribute="top" secondItem="sAX-mR-GeX" secondAttribute="bottom" constant="30" id="Dis-Jq-JZw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T7V-dm-hNP" secondAttribute="trailing" constant="1" id="Gww-lw-cMB"/>
                             <constraint firstItem="sAX-mR-GeX" firstAttribute="centerX" secondItem="LzU-1u-gg6" secondAttribute="centerX" id="Nf7-mG-fcq"/>
                             <constraint firstItem="VSN-eW-ZdI" firstAttribute="centerX" secondItem="LzU-1u-gg6" secondAttribute="centerX" id="lsR-ax-p2V"/>
                             <constraint firstItem="sAX-mR-GeX" firstAttribute="centerY" secondItem="LzU-1u-gg6" secondAttribute="centerY" id="p2k-Mj-hPN"/>
+                            <constraint firstItem="H0R-6w-fjo" firstAttribute="top" secondItem="T7V-dm-hNP" secondAttribute="bottom" constant="43" id="yI5-K5-ebc"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -194,10 +204,10 @@
             </objects>
             <point key="canvasLocation" x="1301.5" y="370.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Drawing View Controller-->
         <scene sceneID="qZZ-6G-xj4">
             <objects>
-                <viewController id="P2l-uq-pPk" sceneMemberID="viewController">
+                <viewController id="P2l-uq-pPk" customClass="DrawingViewController" customModule="Hakkason" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Slf-5I-lpj"/>
                         <viewControllerLayoutGuide type="bottom" id="GET-ba-VwU"/>
@@ -205,13 +215,53 @@
                     <view key="view" contentMode="scaleToFill" id="ynJ-c5-LFc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-b9-Kq7" customClass="ACEDrawingView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-hc-H0U">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="undo" id="BjE-2T-imr"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3X8-Mu-xac"/>
+                                    <barButtonItem title="色" id="ICt-XR-kib"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eEq-Yf-VbA"/>
+                                    <barButtonItem title="太さ" id="574-QN-GWZ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yEF-by-n72"/>
+                                    <barButtonItem title="送信" id="frR-Wf-cul"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GET-ba-VwU" firstAttribute="top" secondItem="Lyc-hc-H0U" secondAttribute="bottom" id="3hX-0y-pa7"/>
+                            <constraint firstItem="Lyc-hc-H0U" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" id="4Am-Ix-3N7"/>
+                            <constraint firstItem="9IK-b9-Kq7" firstAttribute="leading" secondItem="ynJ-c5-LFc" secondAttribute="leading" id="5if-d4-I1F"/>
+                            <constraint firstItem="Lyc-hc-H0U" firstAttribute="leading" secondItem="ynJ-c5-LFc" secondAttribute="leading" id="DC9-vu-cmH"/>
+                            <constraint firstAttribute="trailing" secondItem="9IK-b9-Kq7" secondAttribute="trailing" id="QyK-y4-cBo"/>
+                            <constraint firstItem="Lyc-hc-H0U" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" id="bnA-Kz-h2U"/>
+                            <constraint firstItem="GET-ba-VwU" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" constant="50" id="tAO-yn-xdf"/>
+                            <constraint firstItem="9IK-b9-Kq7" firstAttribute="top" secondItem="Slf-5I-lpj" secondAttribute="bottom" id="x8q-GF-zrb"/>
+                            <constraint firstAttribute="trailing" secondItem="Lyc-hc-H0U" secondAttribute="trailing" id="y6s-gy-iP2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tAO-yn-xdf"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="drawingView" destination="9IK-b9-Kq7" id="xPL-Jj-08B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeZ-CK-yYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1834.5" y="370.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="wkx-eZ-2eZ"/>
+    </inferredMetricsTieBreakers>
 </document>
