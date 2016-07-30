@@ -12,6 +12,7 @@ import ACEDrawingView
 class DrawingViewController: UIViewController {
     
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
+    var SaveButton: UIBarButtonItem!
     
     //描画画面をアウトレット接続してあります。
     @IBOutlet weak var drawingView: ACEDrawingView!
@@ -20,10 +21,39 @@ class DrawingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Saveボタンの作成
+        SaveButton = UIBarButtonItem(title: "保存", style: .Plain, target: self, action: "onClickSaveButton:")
+        
+        // ナビゲーションバーの右に設置
+        self.navigationItem.rightBarButtonItem = SaveButton
+        
         //線の太さの変更はこのように行います。
         drawingView.lineWidth = 2.0
 
         // Do any additional setup after loading the view.
+    }
+    
+    internal func onClickSaveButton(sender: UIButton){
+       
+        //
+        let Image: UIImage = self.drawingView.image
+        
+        //アルバムに追加
+        UIImageWriteToSavedPhotosAlbum(Image, self, nil, nil)
+        
+        let alert: UIAlertController = UIAlertController(title: "保存が完了しました！", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+        })
+
+            
+            alert.addAction(defaultAction)
+            
+            // ④ Alertを表示
+            presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func DrawUndo(sender: UIBarButtonItem) {
