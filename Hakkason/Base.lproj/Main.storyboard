@@ -250,6 +250,11 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="yEF-by-n72"/>
                                     <barButtonItem image="Sent Filled-50" id="frR-Wf-cul"/>
+                                    <barButtonItem title="取得" id="0a8-GR-vgX">
+                                        <connections>
+                                            <action selector="imagePick:" destination="P2l-uq-pPk" id="bC0-oR-qbj"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-b9-Kq7" customClass="ACEDrawingView">

@@ -9,7 +9,7 @@
 import UIKit
 import ACEDrawingView
 
-class DrawingViewController: UIViewController {
+class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
     var SaveButton: UIBarButtonItem!
@@ -29,10 +29,10 @@ class DrawingViewController: UIViewController {
         //線の太さの変更はこのように行います。
         drawingView.lineWidth = 2.0
         
-        let image = UIImage(named: "ScreenShot")
-        drawingView.drawMode = ACEDrawingMode.OriginalSize
-
-        drawingView.loadImage(image)
+//        let image = UIImage(named: "ScreenShot")
+//        drawingView.drawMode = ACEDrawingMode.OriginalSize
+//
+//        drawingView.loadImage(image)
         
 
         // Do any additional setup after loading the view.
@@ -98,6 +98,25 @@ class DrawingViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         drawingView.lineColor = ad.pickedColor
+    }
+    
+    
+    @IBAction func imagePick(sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+            let ipc:UIImagePickerController = UIImagePickerController()
+            ipc.delegate = self
+            ipc.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(ipc, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if info [UIImagePickerControllerOriginalImage] != nil {
+            drawingView.drawMode = ACEDrawingMode.Scale
+            drawingView.loadImage(info[UIImagePickerControllerOriginalImage] as? UIImage)
+        }
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
