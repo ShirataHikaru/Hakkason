@@ -229,7 +229,7 @@
 				TargetAttributes = {
 					7C1B2F311D4BABA700663070 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2295MJN9F8;
+						DevelopmentTeam = KFSLYCVGZ5;
 					};
 				};
 			};
@@ -468,7 +468,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hakkason/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = HILab.Hakkasonadadeterfdsfef;
+				PRODUCT_BUNDLE_IDENTIFIER = HILab.Hakkason1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -483,7 +483,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hakkason/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = HILab.Hakkasonadadeterfdsfef;
+				PRODUCT_BUNDLE_IDENTIFIER = HILab.Hakkason1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
