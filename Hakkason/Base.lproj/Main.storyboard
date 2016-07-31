@@ -85,6 +85,9 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-hc-H0U">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ISf-H1-e3b"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem image="undo" id="BjE-2T-imr">
                                         <connections>
@@ -117,9 +120,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-b9-Kq7" customClass="ACEDrawingView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-b9-Kq7" customClass="ACEDrawingView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -128,14 +130,19 @@
                             <constraint firstItem="Lyc-hc-H0U" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" id="4Am-Ix-3N7"/>
                             <constraint firstItem="9IK-b9-Kq7" firstAttribute="leading" secondItem="ynJ-c5-LFc" secondAttribute="leading" id="5if-d4-I1F"/>
                             <constraint firstItem="Lyc-hc-H0U" firstAttribute="leading" secondItem="ynJ-c5-LFc" secondAttribute="leading" id="DC9-vu-cmH"/>
+                            <constraint firstItem="9IK-b9-Kq7" firstAttribute="leading" secondItem="ynJ-c5-LFc" secondAttribute="leading" id="EkN-vF-Jmt"/>
                             <constraint firstAttribute="trailing" secondItem="9IK-b9-Kq7" secondAttribute="trailing" id="QyK-y4-cBo"/>
+                            <constraint firstItem="9IK-b9-Kq7" firstAttribute="top" secondItem="Slf-5I-lpj" secondAttribute="bottom" id="a53-qw-7rS"/>
                             <constraint firstItem="Lyc-hc-H0U" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" id="bnA-Kz-h2U"/>
+                            <constraint firstItem="Lyc-hc-H0U" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" id="kJV-yK-LZ0"/>
+                            <constraint firstAttribute="trailing" secondItem="9IK-b9-Kq7" secondAttribute="trailing" id="kg4-Ea-ZYz"/>
                             <constraint firstItem="GET-ba-VwU" firstAttribute="top" secondItem="9IK-b9-Kq7" secondAttribute="bottom" constant="50" id="tAO-yn-xdf"/>
                             <constraint firstItem="9IK-b9-Kq7" firstAttribute="top" secondItem="Slf-5I-lpj" secondAttribute="bottom" id="x8q-GF-zrb"/>
                             <constraint firstAttribute="trailing" secondItem="Lyc-hc-H0U" secondAttribute="trailing" id="y6s-gy-iP2"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="bnA-Kz-h2U"/>
                                 <exclude reference="tAO-yn-xdf"/>
                             </mask>
                         </variation>
@@ -149,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeZ-CK-yYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1846.5" y="657.5"/>
+            <point key="canvasLocation" x="1814.5" y="527.5"/>
         </scene>
         <!--Waitmessage View Controller-->
         <scene sceneID="SpU-Nq-EAy">

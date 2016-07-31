@@ -45,6 +45,7 @@
 		EDF8CAD81D4D7C4800E3CA4D /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CABB1D4D7C4800E3CA4D /* TransitionManager.swift */; };
 		EDF8CAD91D4D7C4800E3CA4D /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CABC1D4D7C4800E3CA4D /* TransitionZoom.swift */; };
 		EDF8CADA1D4D7C4800E3CA4D /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CABD1D4D7C4800E3CA4D /* UnwindSegue.swift */; };
+		EDF8CADC1D4D863300E3CA4D /* p0096_l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDF8CADB1D4D863300E3CA4D /* p0096_l.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		EDF8CABB1D4D7C4800E3CA4D /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		EDF8CABC1D4D7C4800E3CA4D /* TransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionZoom.swift; sourceTree = "<group>"; };
 		EDF8CABD1D4D7C4800E3CA4D /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
+		EDF8CADB1D4D863300E3CA4D /* p0096_l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = p0096_l.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				7C1B2F351D4BABA700663070 /* AppDelegate.swift */,
 				7C1B2F371D4BABA700663070 /* ViewController.swift */,
 				7C1B2F391D4BABA700663070 /* Main.storyboard */,
+				EDF8CADB1D4D863300E3CA4D /* p0096_l.jpg */,
 				7C1B2F3C1D4BABA700663070 /* Assets.xcassets */,
 				7C1B2F3E1D4BABA700663070 /* LaunchScreen.storyboard */,
 				7C1B2F411D4BABA700663070 /* Info.plist */,
@@ -260,6 +263,7 @@
 				7C1B2F401D4BABA700663070 /* LaunchScreen.storyboard in Resources */,
 				7C1B2F3D1D4BABA700663070 /* Assets.xcassets in Resources */,
 				7C1B2F3B1D4BABA700663070 /* Main.storyboard in Resources */,
+				EDF8CADC1D4D863300E3CA4D /* p0096_l.jpg in Resources */,
 				EDF8CACD1D4D7C4800E3CA4D /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

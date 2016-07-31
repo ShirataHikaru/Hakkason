@@ -20,7 +20,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     var SaveButton: UIBarButtonItem!
     
     // Sliderを作成
-    let WidthSlider = UISlider(frame: CGRectMake(0, 0, 200, 30))
+    let WidthSlider = UISlider(frame: CGRectMake(0,0, 200, 30))
     var SliderDisplay: Bool = false
 
     let serviceType = "LCOC-Chat"
@@ -32,12 +32,13 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func alldeletepush(sender: AnyObject) {
          let alert = SCLAlertView()
         alert.addButton("Yes"){
+            self.dismissViewControllerAnimated(true, completion: nil)
              self.drawingView.clear()
         }
                         alert.addButton("no") {
             print("Second button tapped")
         }
-        alert.showSuccess("全部削除してもよろしいですか?", subTitle: "")
+        alert.showSuccess("本当によろしいですか？", subTitle: "")
         //let alert:UIAlertController = UIAlertController(title: "全部削除しますがよろしいですか？",message: "",preferredStyle: UIAlertControllerStyle.Alert)
         let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel",style: UIAlertActionStyle.Cancel,
                                                        handler: {
@@ -53,6 +54,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         presentViewController(alert, animated: true, completion: nil)
     }
+    
     //描画画面をアウトレット接続してあります。
     @IBOutlet weak var drawingView: ACEDrawingView!
     var SerchButton: UIBarButtonItem!
@@ -61,7 +63,15 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         SerchButton = UIBarButtonItem(title:"検索",style: .Plain,target:self,action: "OnClickSerchButton:")
         self.navigationItem.leftBarButtonItem = SerchButton
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "p0096_l.jpg")?.drawInRect(self.view.bounds)
         
+        let image: UIImage! = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
         
         self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
         self.session = MCSession(peer: peerID)
@@ -117,6 +127,9 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
 ////        vc.dismissViewControllerAnimated(true, completion: nil)
 //    }
     
+
+    
+    
     internal func onClickSaveButton(sender: UIButton){
         
         // 描いた画面をUIImageで取得
@@ -149,6 +162,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func DrawWidth(sender: UIBarButtonItem) {
+        self.WidthSlider.layer.position = CGPoint(x: self.view.frame.size.width * 0.5, y:self.view.frame.size.height * 0.85 )
         if SliderDisplay == false{
             self.view.addSubview(self.WidthSlider)
             SliderDisplay = true
@@ -173,8 +187,8 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
                                       toPeers: self.session.connectedPeers,
                                       withMode: MCSessionSendDataMode.Unreliable)
             let alert = SCLAlertView()
-            alert.showSuccess("Infomation", subTitle: "To display a little bit of time, the message",duration: 2.0)
-
+            let alertView = SCLAlertView()
+            alertView.showSuccess("送信待機中", subTitle: "",duration: 2.0)
             alert.showWait("受信待機中", subTitle: "")            //let alert:UIAlertController =  UIAlertController(title: "受診待機中",message: "",preferredStyle: UIAlertControllerStyle.Alert)
             presentViewController(alert, animated: true, completion: nil)
            
