@@ -33,10 +33,12 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
          let alert = SCLAlertView()
         alert.addButton("Yes"){
             self.dismissViewControllerAnimated(true, completion: nil)
-             self.drawingView.clear()
+            self.drawingView.clear()
+
         }
                         alert.addButton("no") {
             print("Second button tapped")
+                             self.dismissViewControllerAnimated(true, completion: nil)
         }
         alert.showSuccess("本当によろしいですか？", subTitle: "")
         //let alert:UIAlertController = UIAlertController(title: "全部削除しますがよろしいですか？",message: "",preferredStyle: UIAlertControllerStyle.Alert)
@@ -188,7 +190,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
                                       withMode: MCSessionSendDataMode.Unreliable)
             let alert = SCLAlertView()
             let alertView = SCLAlertView()
-            alertView.showSuccess("送信待機中", subTitle: "",duration: 2.0)
+            alertView.showSuccess("送信完了", subTitle: "",duration: 2.0)
             alert.showWait("受信待機中", subTitle: "")            //let alert:UIAlertController =  UIAlertController(title: "受診待機中",message: "",preferredStyle: UIAlertControllerStyle.Alert)
             presentViewController(alert, animated: true, completion: nil)
            
@@ -281,8 +283,6 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     func session(session: MCSession!,
                  didStartReceivingResourceWithName resourceName: String!,
                                                    fromPeer peerID: MCPeerID!, withProgress progress: NSProgress!)  {
-        navigationController?.navigationBar.topItem?.title = peerID.displayName
-        
         
         // Called when a peer starts sending a file to us
     }
@@ -292,7 +292,8 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
                                                     fromPeer peerID: MCPeerID!,
                                                              atURL localURL: NSURL!, withError error: NSError!)  {
         // Called when a file has finished transferring from another peer
-        navigationController?.navigationBar.topItem?.title = peerID.displayName
+        
+        
         
 
     }
@@ -300,7 +301,7 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
     func session(session: MCSession!, didReceiveStream stream: NSInputStream!,
                  withName streamName: String!, fromPeer peerID: MCPeerID!)  {
         // Called when a peer establishes a stream with us
-        navigationController?.navigationBar.topItem?.title = peerID.displayName
+    
         
 
     }

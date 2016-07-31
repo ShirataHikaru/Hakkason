@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hakkason/DrawingViewController.swift"
-            timestampString = "491623603.17324"
+            timestampString = "491626692.51245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "DrawWidth(_:)"
             landmarkType = "5">
          </BreakpointContent>
