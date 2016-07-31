@@ -195,8 +195,24 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.dismissViewControllerAnimated(true, completion: nil)
         let chatchimage : UIImage! = UIImage(data:recimg)
         let imgView = UIImageView(image:chatchimage)
+        let image = SpringImageView(image: chatchimage)
+        image.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 100)
+        image.layer.position = CGPoint(x: self.view.frame.width * 0.5, y: self.view.frame.height * 0.5)
+        image.contentMode = .ScaleToFill
+        self.view.addSubview(image)
+        self.view.bringSubviewToFront(image)
+        image.animation = "fadeInDown"
+        image.duration = 1.5
+        image.animate()
+        
+        let delay = 1.5 * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            image.removeFromSuperview()
+           
         self.drawingView.drawMode = ACEDrawingMode.Scale
         self.drawingView.loadImage(chatchimage)
+            })
 //        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
        // ad.modalVC = WaitmessageViewController()
         //ad.modalVC.dismissViewControllerAnimated(true, completion: nil)
