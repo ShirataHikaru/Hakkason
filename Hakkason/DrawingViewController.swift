@@ -173,6 +173,8 @@ class DrawingViewController: UIViewController, UIImagePickerControllerDelegate, 
                                       toPeers: self.session.connectedPeers,
                                       withMode: MCSessionSendDataMode.Unreliable)
             let alert = SCLAlertView()
+            alert.showSuccess("Infomation", subTitle: "To display a little bit of time, the message",duration: 2.0)
+
             alert.showWait("受信待機中", subTitle: "")            //let alert:UIAlertController =  UIAlertController(title: "受診待機中",message: "",preferredStyle: UIAlertControllerStyle.Alert)
             presentViewController(alert, animated: true, completion: nil)
            
