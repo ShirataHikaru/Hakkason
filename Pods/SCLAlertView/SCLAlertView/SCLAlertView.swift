@@ -232,7 +232,7 @@ public class SCLAlertView: UIViewController {
         // Set up main view
         view.frame = UIScreen.mainScreen().bounds
         view.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
-        view.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:appearance.kDefaultShadowOpacity)
+        view.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:0.5)
         view.addSubview(baseView)
         // Base View
         baseView.frame = view.frame
@@ -459,7 +459,8 @@ public class SCLAlertView: UIViewController {
         var hue : CGFloat = 0
         var saturation : CGFloat = 0
         var brightness : CGFloat = 0
-        var alpha : CGFloat = 0
+        var alpha : CGFloat =
+        0
         let pressBrightnessFactor = 0.85
         btn.backgroundColor?.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
         brightness = brightness * CGFloat(pressBrightnessFactor)
