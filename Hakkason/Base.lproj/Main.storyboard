@@ -95,7 +95,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3X8-Mu-xac"/>
-                                    <barButtonItem title="Dust" id="0nS-NA-7LV">
+                                    <barButtonItem image="Trash-50" id="0nS-NA-7LV">
                                         <connections>
                                             <action selector="alldeletepush:" destination="P2l-uq-pPk" id="kXw-gu-jG5"/>
                                         </connections>
@@ -276,6 +276,7 @@
         <image name="Color Dropper-50" width="25" height="25"/>
         <image name="Line Width-50" width="25" height="25"/>
         <image name="Sent-50" width="25" height="25"/>
+        <image name="Trash-50" width="25" height="25"/>
         <image name="undo" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
